@@ -1,8 +1,8 @@
 import './index.css'
 import { endLoader, startLoader } from './utils/loader.js'
 import { ApiYoutube } from './lib/api-youtube.js'
-import { queue } from './utils/services/queue.js'
-import { getIdByLink } from './utils/services/get-id-by-link.js'
+import { queue } from './functions/queue.js'
+import { getIdByLink } from './functions/get-id-by-link.js'
 
 document.querySelector('#app').innerHTML = `
 

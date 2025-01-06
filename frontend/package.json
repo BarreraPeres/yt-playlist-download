@@ -4,27 +4,19 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "nodemon src/server.js",
-    "deploy": "node src/server.js & vite --host",
     "dev": "vite",
-    "test:e2e": "node --test src/tests/controllers",
-    "test:unit": "node --test src/tests/units",
     "build": "vite build",
     "preview": "vite preview"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
-    "nodemon": "^3.1.7",
     "postcss": "^8.4.47",
     "supertest": "^7.0.0",
     "tailwindcss": "^3.4.14",
     "vite": "^5.4.10"
   },
   "dependencies": {
-    "@distube/ytdl-core": "4.15.6",
-    "@fastify/cors": "^10.0.1",
     "axios": "^1.7.7",
-    "cheerio": "^1.0.0",
     "fastify": "^5.1.0",
     "js-file-download": "^0.4.12",
     "zod": "^3.24.1"

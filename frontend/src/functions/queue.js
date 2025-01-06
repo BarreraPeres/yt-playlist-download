@@ -1,5 +1,5 @@
 import axios from "axios"
-import { DownloadProgress } from "../download-progress.js"
+import { DownloadProgress } from "../utils/download-progress.js"
 import fileDownload from "js-file-download"
 
 const options = {
