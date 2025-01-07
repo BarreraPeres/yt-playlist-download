@@ -18,5 +18,7 @@ jobs:
             cache-dependency-path: ./backend/package-lock.json
 
         - run: npm ci
+          working-directory: ./backend        
 
-        - run: npm run test:unit    
+        - run: npm run test:unit 
+          working-directory: ./backend 
