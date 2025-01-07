@@ -1,8 +1,8 @@
 import { after, before, describe, it } from "node:test"
 import assert from "node:assert"
 import request from "supertest"
-import { app } from "../../server.js"
-import { env } from "../../env/env.js"
+import { app } from "../../src/server.js"
+import { env } from "../../src/env/env.js"
 
 describe("controller download (e2e) ", () => {
 

@@ -1,8 +1,8 @@
 import { after, describe, it } from "node:test"
 import assert from "node:assert"
 import fs, { unlink } from "node:fs"
-import { YoutubeMp3 } from "../../../use-cases/download-mp3.js"
-import { env } from "../../../env/env.js"
+import { YoutubeMp3 } from "../../../src/use-cases/download-mp3.js"
+import { env } from "../../../src/env/env.js"
 
 after(async () => {
     unlink(AUDIO_TEST_FILEPATH, () => { })
