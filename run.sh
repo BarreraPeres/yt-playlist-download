@@ -1,4 +1,7 @@
 #!/bin/bash
 
-npm run start & \
-npm run dev
+cd backend && \ 
+npm run dev & 
+
+cd ../frontend && \
+ npm run dev
