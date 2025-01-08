@@ -4,7 +4,7 @@ import path from 'node:path';
 import fs from 'node:fs';
 import { excludeDownloadMp3 } from "../use-cases/exclude-download-mp3.js";
 import { createFolder } from "../utils/create-folder.js";
-
+import { replaceTitle } from "../utils/replace-title.js"
 export async function downloadController(request, reply) {
     const audioMp3 = new YoutubeMp3()
 
@@ -16,15 +16,17 @@ export async function downloadController(request, reply) {
 
         const folder = await createFolder()
 
-        await audioMp3.download(url, videoDetails.title, folder)
+        const title = await replaceTitle(videoDetails.title)
 
-        const filepath = path.resolve(folder, `${videoDetails.title}.mp3`)
+        await audioMp3.download(url, title, folder)
+
+        const filepath = path.resolve(folder, `${title}.mp3`)
 
         const audio_read = fs.createReadStream(filepath)
 
         return reply.status(200).headers({
             "content-type": "audio/mpeg",
-            "content-disposition": `attachment; filename=${videoDetails.title}.mp3`
+            "content-disposition": `attachment; filename=${title}.mp3`
         }).send(audio_read)
 
     } catch (e) {
