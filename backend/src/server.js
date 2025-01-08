@@ -12,6 +12,6 @@ app.register(fastifyCors, {
     exposedHeaders: ["content-disposition"]
 })
 
-app.listen({ port: env.PORT }).then((address) => {
+app.listen({ port: env.PORT, host: env.HOST }).then((address) => {
     console.log(`server is running in ${address}`)
 })
