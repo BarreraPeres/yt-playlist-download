@@ -16,7 +16,7 @@ export async function queue() {
     for (let i = 0; i < window.lista.length; i++) {
         try {
 
-            await axios.get(`http://localhost:3333/download/${window.lista[i]}`, options)
+            await axios.get(`${import.meta.env.VITE_API_URL}/download/${window.lista[i]}`, options)
                 .then((res) => {
                     const [filenames, title] = res.headers["content-disposition"].split("=")
                     fileDownload(res.data, title)
