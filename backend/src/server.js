@@ -8,7 +8,7 @@ export const app = fastify()
 app.register(routes)
 
 app.register(fastifyCors, {
-    origin: "env.CORS_ORIGIN",
+    origin: env.CORS_ORIGIN,
     exposedHeaders: ["content-disposition"]
 })
 
