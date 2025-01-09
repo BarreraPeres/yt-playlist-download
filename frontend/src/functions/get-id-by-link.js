@@ -10,9 +10,15 @@ export async function getIdByLink(url) {
 
     }
 
-    if (url.includes("t=")) {
+    if (url.includes("&t=")) {
         console.info("link contém tempo")
         const [link, time] = url.split("&t=")
+
+        if (link.includes("&list=")) {
+            console.info("link de playlist")
+            const data = await separeteIdPlaylistAndIdVideo(link)
+            return { id_playlist: data.id_playlist, id_video: data.id_video }
+        }
 
         const [youtube, id_video] = link.split("?v=")
 
