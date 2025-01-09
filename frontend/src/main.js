@@ -9,7 +9,7 @@ document.querySelector('#app').innerHTML = `
   <form id="FormYT" class="flex mb-6">
     <input 
     class="text-sm text-zinc-300 border border-emerald-800 hover:border-emerald-950 rounded-lg hover:bg-emerald-950 bg-emerald-900 focus:ring-emerald-950 focus:border-emerald-950 p-3 ps-10 w-[540px]"
-    placeholder="Link da playlist do youtube... "
+    placeholder="Baixe em Mp3, link de um vídeo ou de uma playlist do YouTube..."
     id="link"
     > 
       <button class="bg-emerald-900 py-4 px-8 rounded-md ml-1 hover:bg-emerald-950">
