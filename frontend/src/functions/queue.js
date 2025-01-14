@@ -2,21 +2,20 @@ import axios from "axios"
 import { DownloadProgress } from "../utils/download-progress.js"
 import fileDownload from "js-file-download"
 
-const options = {
-    responseType: "blob",
-    headers: {
-        "content-type": "audio/mpeg"
-    },
-    onDownloadProgress: function (progressEvent) {
-        DownloadProgress(progressEvent.bytes * 100 / progressEvent.bytes)
-    }
-}
-
-export async function queue() {
+export async function queue(typeDownload) {
     for (let i = 0; i < window.lista.length; i++) {
         try {
+            await axios.get(`${import.meta.env.VITE_API_URL}/download/${window.lista[i]}/${typeDownload}`, {
+                responseType: "blob",
+                headers: {
+                    "content-type": typeDownload === "mp3" ? "audio/mpeg" : "video/mp4"
+                },
 
-            await axios.get(`${import.meta.env.VITE_API_URL}/download/${window.lista[i]}`, options)
+                onDownloadProgress: function (progressEvent) {
+                    console.log(progressEvent.bytes)
+                    DownloadProgress(progressEvent.bytes * 100 / progressEvent.bytes)
+                }
+            })
                 .then((res) => {
                     const [filenames, title] = res.headers["content-disposition"].split("=")
                     fileDownload(res.data, title)
@@ -28,9 +27,8 @@ export async function queue() {
             console.log(e)
             throw new Error("Erro ao baixar")
         }
-
     }
-
+    setTimeout(() => window.location.reload(), 1000)
 }
 
 // with js vanilla             
