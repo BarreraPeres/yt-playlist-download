@@ -22,11 +22,14 @@ export async function downloadControllerMp3(request, reply) {
 
         const filepath = path.resolve(folder, `${title}.mp3`)
 
+        const stats = fs.statSync(filepath);
+
         const audio_read = fs.createReadStream(filepath)
 
         return reply.status(200).headers({
             "content-type": "audio/mpeg",
-            "content-disposition": `attachment; filename=${title}.mp3`
+            "content-disposition": `attachment; filename=${title}.mp3`,
+            "content-length": `${stats.size}`
         }).send(audio_read)
 
     } catch (e) {
