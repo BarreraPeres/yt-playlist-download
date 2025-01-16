@@ -14,19 +14,23 @@ export async function downloadControllerMp4(request, reply) {
 
     try {
         const { id_video } = request.params
+        let { quality } = request.query
+
+        if (!quality) {
+            quality = "highest"
+        }
 
         const url = `https://www.youtube.com/watch?v=${id_video}`
         const { videoDetails } = await ytdl.getBasicInfo(url)
 
         const folder = await createFolder()
-
         const title = await replaceTitle(videoDetails.title)
 
         const filepathOfVideo = path.resolve(folder, "video.mp4")
         const filepathOfAudio = path.resolve(folder, "audio.mp3")
         const filepath = path.resolve(folder, title + ".mp4")
 
-        await audioMp4.download(url, filepathOfVideo, filepathOfAudio)
+        await audioMp4.download(url, filepathOfVideo, filepathOfAudio, quality)
         console.info("baixou o video e o audio")
 
         await ffmpegJoiningMp3Mp4(filepathOfVideo, filepathOfAudio, filepath)
