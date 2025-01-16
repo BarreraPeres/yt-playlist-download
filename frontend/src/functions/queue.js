@@ -5,14 +5,14 @@ import fileDownload from "js-file-download"
 export async function queue(typeDownload, quality) {
     for (let i = 0; i < window.lista.length; i++) {
         try {
-            await axios.get(`${import.meta.env.VITE_API_URL}/download/${window.lista[i]}/${typeDownload}?quality${quality}`, {
+            await axios.get(`${import.meta.env.VITE_API_URL}/download/${window.lista[i]}/${typeDownload}?quality=${quality}`, {
                 responseType: "blob",
                 headers: {
                     "content-type": typeDownload === "mp3" ? "audio/mpeg" : "video/mp4"
                 },
 
                 onDownloadProgress: function (progressEvent) {
-                    DownloadProgress(progressEvent.bytes * 100 / progressEvent.bytes)
+                    DownloadProgress(progressEvent.loaded * 100 / progressEvent.total)
                 }
             })
                 .then((res) => {
