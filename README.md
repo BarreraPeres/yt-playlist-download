@@ -1,10 +1,10 @@
-# Youtube Playlist Download 
+# 🐉 Youtube Playlist Download 
 Uma aplicação web para facilitar o download de áudios do YouTube de maneira prática e eficiente.
 Desenvolvido com tecnologias Node.js, React. De bibliotecas tailwindcss, fastify, distube/ytdl-core, vite.
 
-# Funcionalidades 
+# 🎇Funcionalidades 
 Pesquisar vídeos do YouTube por URL.
-Download rápido de áudio, playlist no formato mp3.
+Download rápido de vídeo, áudio, playlist no formato mp3.
 Interface responsiva e amigável.
 
 # 📦 Instalação e Uso Local
@@ -19,14 +19,14 @@ Inicie o back e o frontend
 chmod +x ./run.sh
 ./run.sh
 ```
-Ou use o docker 🐳
+# 🐳 Ou use o docker 
 
 ```
 docker build .
 docker-compose up
 ```
 
-📂 Estrutura do Projeto
+# 📂 Estrutura do Projeto
 ```plaintext
 yt-playlist-download/
 ├── .github/workflows/
