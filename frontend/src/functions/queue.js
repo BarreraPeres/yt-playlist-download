@@ -2,17 +2,16 @@ import axios from "axios"
 import { DownloadProgress } from "../utils/download-progress.js"
 import fileDownload from "js-file-download"
 
-export async function queue(typeDownload) {
+export async function queue(typeDownload, quality) {
     for (let i = 0; i < window.lista.length; i++) {
         try {
-            await axios.get(`${import.meta.env.VITE_API_URL}/download/${window.lista[i]}/${typeDownload}`, {
+            await axios.get(`${import.meta.env.VITE_API_URL}/download/${window.lista[i]}/${typeDownload}?quality${quality}`, {
                 responseType: "blob",
                 headers: {
                     "content-type": typeDownload === "mp3" ? "audio/mpeg" : "video/mp4"
                 },
 
                 onDownloadProgress: function (progressEvent) {
-                    console.log(progressEvent.bytes)
                     DownloadProgress(progressEvent.bytes * 100 / progressEvent.bytes)
                 }
             })

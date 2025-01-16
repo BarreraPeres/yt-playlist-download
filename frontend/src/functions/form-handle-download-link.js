@@ -7,6 +7,7 @@ export async function formHandleDownloadLink() {
 
     const url = document.getElementById("link").value
     const typeDownload = document.getElementById("dropdown").value;
+    const quality = document.getElementById("quality").value;
 
     const { id_playlist, id_video } = await getIdByLink(url)
 
@@ -22,12 +23,12 @@ export async function formHandleDownloadLink() {
             const yt = new ApiYoutube()
             console.log("inicando o download do seu video")
             await yt.videoLoad(id_video)
-            await queue(typeDownload)
+            await queue(typeDownload, quality)
         } else {
             const yt = new ApiYoutube()
             console.log("inicando o download da sua playlist")
             await yt.playlistLoad(id_playlist)
-            await queue(typeDownload)
+            await queue(typeDownload, quality)
         }
     } catch (e) {
         console.log(e)
