@@ -38,9 +38,12 @@ export async function downloadControllerMp4(request, reply) {
 
         const video_stream = fs.createReadStream(filepath)
 
+        const stats = fs.statSync(filepath)
+
         return reply.status(200).headers({
             "content-type": "video/mp4",
-            "content-disposition": `attachment; filename=${title}.mp4`
+            "content-disposition": `attachment; filename=${title}.mp4`,
+            "content-length": `${stats.size}`
         }).send(video_stream)
 
 
