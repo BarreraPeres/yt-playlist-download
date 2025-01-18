@@ -10,6 +10,7 @@ import { env } from "../env/env.js"
 export async function downloadControllerMp3(request, reply) {
     const audioMp3 = new YoutubeMp3()
 
+    console.log("the cookies, im not a bot", env.YOUTUBE_COOKIE_HSID, env.YOUTUBE_COOKIE_SSID, env.YOUTUBE_COOKIE_SID)
     const cookies = [
         { name: "HSID", value: env.YOUTUBE_COOKIE_HSID },
         { name: "SSID", value: env.YOUTUBE_COOKIE_SSID },
