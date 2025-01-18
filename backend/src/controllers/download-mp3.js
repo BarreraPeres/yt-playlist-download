@@ -5,20 +5,32 @@ import fs from 'node:fs';
 import { excludeDownloadMp3 } from "../use-cases/exclude-download-mp3.js";
 import { createFolder } from "../utils/create-folder.js";
 import { replaceTitle } from "../utils/replace-title.js"
+import { env } from "../env/env.js"
+
 export async function downloadControllerMp3(request, reply) {
     const audioMp3 = new YoutubeMp3()
+
+    const cookies = [
+        { name: "HSID", value: env.YOUTUBE_COOKIE_HSID },
+        { name: "SSID", value: env.YOUTUBE_COOKIE_SSID },
+        { name: "SID", value: env.YOUTUBE_COOKIE_SID }
+    ]
 
     try {
         const { id_video } = request.params
 
+        const agent = ytdl.createAgent(cookies)
+
         const url = `https://www.youtube.com/watch?v=${id_video}`
-        const { videoDetails } = await ytdl.getBasicInfo(url)
+        const { videoDetails } = await ytdl.getBasicInfo(url, {
+            agent
+        })
 
         const folder = await createFolder()
 
         const title = await replaceTitle(videoDetails.title)
 
-        await audioMp3.download(url, title, folder)
+        await audioMp3.download(url, title, folder, agent)
 
         const filepath = path.resolve(folder, `${title}.mp3`)
 
