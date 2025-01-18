@@ -2,7 +2,6 @@ services:
   - type: web
     name: youtube-download
     env: node
-    region: oregon
     branch: deploy/backend-render
     rootDir: ./backend
     buildCommand: npm install
