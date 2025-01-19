@@ -28,6 +28,8 @@ export async function downloadControllerMp3(request, reply) {
 
         const folder = await createFolder()
 
+        console.log("folder download", folder)
+
         const title = await replaceTitle(videoDetails.title)
 
         await audioMp3.download(url, title, folder, agent)

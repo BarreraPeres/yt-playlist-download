@@ -8,7 +8,8 @@ const envSchema = z.object({
     CORS_ORIGIN: z.string().default("*"),
     YOUTUBE_COOKIE_HSID: z.string(),
     YOUTUBE_COOKIE_SSID: z.string(),
-    YOUTUBE_COOKIE_SID: z.string()
+    YOUTUBE_COOKIE_SID: z.string(),
+    NODE_ENV: z.enum(["dev", "production"]).default("dev")
 })
 
 const _env = envSchema.safeParse(process.env)

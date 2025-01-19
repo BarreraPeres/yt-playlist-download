@@ -1,19 +1,17 @@
 import { mkdir } from "node:fs/promises";
 import fs from "node:fs";
 import path from "node:path";
+import { dirname } from "../dirname.js";
 
 export async function createFolder() {
     try {
-        let folder;
-        if (!fs.existsSync("./src/downloads/")) {
-            folder = await mkdir("./src/downloads/", { recursive: true })
-        } else {
-            folder = path.join(process.cwd(), "src", "downloads")
+        if (!fs.existsSync(dirname)) {
+            await mkdir(dirname, { recursive: true })
         }
 
-        await fs.promises.access(folder, fs.constants.W_OK);
+        await fs.promises.access(dirname, fs.constants.W_OK);
 
-        return folder
+        return dirname
     } catch (err) {
         console.log(err)
         throw err
