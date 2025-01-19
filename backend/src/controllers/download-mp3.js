@@ -6,6 +6,7 @@ import { excludeDownloadMp3 } from "../use-cases/exclude-download-mp3.js";
 import { createFolder } from "../utils/create-folder.js";
 import { replaceTitle } from "../utils/replace-title.js"
 import { env } from "../env/env.js"
+import { dirname } from "../dirname.js"
 
 export async function downloadControllerMp3(request, reply) {
     const audioMp3 = new YoutubeMp3()
@@ -27,13 +28,11 @@ export async function downloadControllerMp3(request, reply) {
             agent
         })
 
-        const folder = await createFolder()
-
         const title = await replaceTitle(videoDetails.title)
 
-        await audioMp3.download(url, title, folder, agent)
+        await audioMp3.download(url, title, dirname, agent)
 
-        const filepath = path.resolve(folder, `${title}.mp3`)
+        const filepath = path.resolve(dirname, `${title}.mp3`)
 
         const stats = fs.statSync(filepath);
 
