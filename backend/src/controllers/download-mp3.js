@@ -10,15 +10,18 @@ export async function downloadControllerMp3(request, reply) {
 
     try {
         const { id_video } = request.params
+	const cookies = JSON.parse(fs.readFileSync("cookies.json"))
+
+	const agent = ytdl.createAgent(cookies)
 
         const url = `https://www.youtube.com/watch?v=${id_video}`
-        const { videoDetails } = await ytdl.getBasicInfo(url)
+        const { videoDetails } = await ytdl.getBasicInfo(url, { agent } )
 
         const folder = await createFolder()
 
         const title = await replaceTitle(videoDetails.title)
 
-        await audioMp3.download(url, title, folder)
+        await audioMp3.download(url, title, folder, agent)
 
         const filepath = path.resolve(folder, `${title}.mp3`)
 

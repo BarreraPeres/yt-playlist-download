@@ -5,11 +5,12 @@ import { finished } from 'node:stream/promises';
 
 export class YoutubeMp3 {
 
-    async download(url, title, filepath) {
+    async download(url, title, filepath, agent) {
 
         const writer = fs.createWriteStream(path.resolve(filepath, `${title}.mp3`))
 
         ytdl(url, {
+	    agent,
             filter: "audioonly",
             quality: "highestaudio",
         }).pipe(writer)
