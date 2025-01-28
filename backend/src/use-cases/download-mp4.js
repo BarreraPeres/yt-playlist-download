@@ -3,7 +3,7 @@ import fs from "node:fs"
 import { finished } from 'node:stream/promises';
 
 export class YoutubeMp4 {
-    async download(url, filepathOfVideo, filepathOfAudio, quality) {
+    async download(url, filepathOfVideo, filepathOfAudio, quality, agent) {
 
         const streamVideo = fs.createWriteStream(filepathOfVideo)
         const streamAudio = fs.createWriteStream(filepathOfAudio)
@@ -19,6 +19,7 @@ export class YoutubeMp4 {
         return new Promise(async (resolve, rejects) => {
             await finished(streamVideo).then(() => {
                 ytdl(url, {
+                    agent,
                     filter: "audioonly",
                 }).pipe(streamAudio)
                     .on("error", (e) => {

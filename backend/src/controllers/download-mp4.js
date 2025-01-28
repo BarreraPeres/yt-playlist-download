@@ -20,8 +20,12 @@ export async function downloadControllerMp4(request, reply) {
             quality = "highest"
         }
 
+        const cookies = JSON.parse(fs.readFileSync("cookies.json"))
+
+        const agent = ytdl.createAgent(cookies)
+
         const url = `https://www.youtube.com/watch?v=${id_video}`
-        const { videoDetails } = await ytdl.getBasicInfo(url)
+        const { videoDetails } = await ytdl.getBasicInfo(url, { agent })
 
         const folder = await createFolder()
         const title = await replaceTitle(videoDetails.title)
@@ -30,7 +34,7 @@ export async function downloadControllerMp4(request, reply) {
         const filepathOfAudio = path.resolve(folder, "audio.mp3")
         const filepath = path.resolve(folder, title + ".mp4")
 
-        await audioMp4.download(url, filepathOfVideo, filepathOfAudio, quality)
+        await audioMp4.download(url, filepathOfVideo, filepathOfAudio, quality, agent)
         console.info("baixou o video e o audio")
 
         await ffmpegJoiningMp3Mp4(filepathOfVideo, filepathOfAudio, filepath)
