@@ -6,7 +6,7 @@ export async function queue(typeDownload, quality) {
     for (let i = 0; i < window.lista.length; i++) {
         try {
             await axios.get(`${import.meta.env.VITE_API_URL}/download/${window.lista[i]}/${typeDownload}?quality=${quality}`, {
-                responseType: "blob",
+                //responseType: "blob",
                 headers: {
                     "content-type": typeDownload === "mp3" ? "audio/mpeg" : "video/mp4"
                 },
