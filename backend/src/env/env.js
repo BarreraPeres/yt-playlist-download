@@ -10,9 +10,9 @@ const envSchema = z.object({
     HOST: z.string().default("0.0.0.0"),
     AUDIO_TEST_FILEPATH: z.string().default(""),
     CORS_ORIGIN: z.string().default("*"),
-    YOUTUBE_COOKIE_HSID: z.string(),
-    YOUTUBE_COOKIE_SSID: z.string(),
-    YOUTUBE_COOKIE_SID: z.string(),
+    YOUTUBE_COOKIE_HSID: z.string().default(""),
+    YOUTUBE_COOKIE_SSID: z.string().default(""),
+    YOUTUBE_COOKIE_SID: z.string().default(""),
 })
 
 const _env = envSchema.safeParse(process.env)
