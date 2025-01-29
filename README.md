@@ -1,10 +1,10 @@
-# 🐉 Youtube Playlist Download 
+# 🐉 Youtube Playlist Download | Baixadão
 Uma aplicação web para facilitar o download de áudios do YouTube de maneira prática e eficiente.
 Desenvolvido com tecnologias Node.js, React. De bibliotecas tailwindcss, fastify, distube/ytdl-core, vite.
 
 # 🎇Funcionalidades 
 Pesquisar vídeos do YouTube por URL.
-Download rápido de vídeo, áudio, playlist no formato mp3.
+Download rápido de vídeo, áudio, playlist nos formatos mp3 e mp4.
 Interface responsiva e amigável.
 
 # 📦 Instalação e Uso Local
