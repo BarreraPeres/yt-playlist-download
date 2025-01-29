@@ -7,17 +7,20 @@ export class YoutubeMp3 {
 
     async download(url, title, filepath, agent) {
 
-        const writer = fs.createWriteStream(path.resolve(filepath, `${title}.mp3`))
+        const stream = fs.createWriteStream(path.resolve(filepath, `${title}.mp3`))
 
         ytdl(url, {
-	    agent,
+            agent,
             filter: "audioonly",
             quality: "highestaudio",
-        }).pipe(writer)
+        }).pipe(stream)
             .on("error", (e) => {
                 console.log(e)
             })
+            .on("finish", (e) => {
+                console.log("[audioonly] finish")
+            })
 
-        await finished(writer)
+        await finished(stream)
     }
 }
