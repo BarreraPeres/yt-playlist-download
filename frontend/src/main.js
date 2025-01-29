@@ -19,7 +19,7 @@ document.querySelector('#app').innerHTML = `
         p-3 
         ps-10 
         w-[540px]"
-      placeholder="Baixe em Mp3, link de um vídeo ou de uma playlist do YouTube..."
+      placeholder="Baixe um link de um vídeo ou de uma playlist do YouTube..."
       id="link"
     > 
 
@@ -44,7 +44,7 @@ document.querySelector('#app').innerHTML = `
       <label for="quality" class="text-sm text-zinc-300"></label>
       <select id="quality" class="text-sm text-zinc-300 bg-emerald-900 ml-1 py-1 px-4 rounded-lg">
         <option value="lowest">Baixa</option>
-        <option value="highest">Alta</option>
+        <option value="highestvideo">Alta</option>
       </select>
     </div>
     
