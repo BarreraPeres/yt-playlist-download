@@ -41,7 +41,7 @@ document.querySelector('#app').innerHTML = `
     </select>
 
     <div id="videoQuality" class="ml-2 hidden">
-      <label for="quality" class="text-sm text-zinc-300"></label>
+      <label for="quality" class="text-sm text-zinc-400 flex flex-col ml-2 p-1"> Qualidade: </label>
       <select id="quality" class="text-sm text-zinc-300 bg-emerald-900 ml-1 py-1 px-4 rounded-lg">
         <option value="lowest">Baixa</option>
         <option value="highest">Alta</option>
