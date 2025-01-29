@@ -4,10 +4,8 @@ import fs from 'node:fs';
 import { createFolder } from "../utils/create-folder.js";
 import { replaceTitle } from "../utils/replace-title.js"
 import { YoutubeMp4 } from "../use-cases/download-mp4.js";
-import { excludeDownloadMp4 } from "../use-cases/exclude-download-mp4.js";
-import { excludeDownloadMp3 } from "../use-cases/exclude-download-mp3.js";
+import { excludeDownload } from "../use-cases/exclude-download.js";
 import { ffmpegJoiningMp3Mp4 } from "../use-cases/ffmpeg-joining-mp3-mp4.js";
-
 
 export async function downloadControllerMp4(request, reply) {
     const audioMp4 = new YoutubeMp4()
@@ -55,8 +53,8 @@ export async function downloadControllerMp4(request, reply) {
         console.log(e)
         return reply.status(500).send({ message: "erro ao baixar" })
     } finally {
-        await excludeDownloadMp4()
-        await excludeDownloadMp3()
+        await excludeDownload(".mp3")
+        await excludeDownload(".mp4")
     }
 
 }
